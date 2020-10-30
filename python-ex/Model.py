@@ -63,6 +63,13 @@ class Model:
         """
         return self._contacts
 
+    def contactsBeginWith(self, lastName):
+        results = []
+        for contact in self._contacts:
+            if lastName == contact[1][0:len(lastName)]:
+                results.append(contact)
+        return results
+
     def searchContact(self, lastName):
-        return [contact for contact in self._contacts if contact[1] == lastName]
+        return self.contactsBeginWith(lastName)
 
