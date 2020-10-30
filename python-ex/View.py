@@ -26,6 +26,7 @@ class View(QMainWindow):
         self._presenter = Presenter(self)
         self._nContacts = 0
         self.addButton.clicked.connect(self.addButtonPressed)
+        self.searchButton.clicked.connect(self.searchButtonPressed)
         self._presenter.onRead()
 
     def addContact(self, firstName, lastName):
@@ -52,8 +53,15 @@ class View(QMainWindow):
             self._presenter.onAdd(firstName, lastName)
 
     def searchButtonPressed(self):
-        pass
+        self._presenter.onSearch(self.searchField.text())
 
     def setSearchResults(self, results):
-        pass
+        for i in reversed(range(self.searchResults.count())):
+            self.searchResults.itemAt(i).widget().setParent(None)
+
+        n = 0
+        for contact in results:
+            self.searchResults.addWidget(QLabel(contact[0]), n, 0)
+            self.searchResults.addWidget(QLabel(contact[1]), n, 1)
+            n += 1
 

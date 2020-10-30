@@ -64,5 +64,5 @@ class Model:
         return self._contacts
 
     def searchContact(self, lastName):
-        return None
+        return [contact for contact in self._contacts if contact[1] == lastName]
 
