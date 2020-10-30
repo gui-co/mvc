@@ -26,7 +26,8 @@ class View(QMainWindow):
         self._presenter = Presenter(self)
         self._nContacts = 0
         self.addButton.clicked.connect(self.addButtonPressed)
-        self.searchButton.clicked.connect(self.searchButtonPressed)
+        # self.searchButton.clicked.connect(self.searchButtonPressed)
+        self.searchField.textEdited.connect(self.searchButtonPressed)
         self._presenter.onRead()
 
     def addContact(self, firstName, lastName):
